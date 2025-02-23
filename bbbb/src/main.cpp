@@ -10,7 +10,7 @@ int ledState = LOW;
 unsigned long lastDebounceTime = 0;
 unsigned long debounceDelay = 50;
 
-LedBulb bulb = LedBulb(BUILT_IN_LED);
+Led bulb = Led(BUILT_IN_LED);
 
 void setup()
 {
