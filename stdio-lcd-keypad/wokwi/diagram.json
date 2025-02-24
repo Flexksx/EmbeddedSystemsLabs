@@ -1,0 +1,61 @@
+{
+  "version": 1,
+  "author": "Uri Shaked",
+  "editor": "wokwi",
+  "parts": [
+    {
+      "type": "wokwi-arduino-uno",
+      "id": "uno",
+      "top": 200,
+      "left": 20,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-membrane-keypad",
+      "id": "keypad",
+      "top": 140,
+      "left": 360,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-lcd1602",
+      "id": "lcd1",
+      "top": -176,
+      "left": 341.6,
+      "attrs": { "pins": "i2c" }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "led1",
+      "top": -13.2,
+      "left": 195.8,
+      "attrs": { "color": "red" }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "led2",
+      "top": -13.2,
+      "left": 243.8,
+      "attrs": { "color": "green" }
+    }
+  ],
+  "connections": [
+    ["uno:A3", "keypad:C1", "brown", ["v116", "*", "h0", "v0"]],
+    ["uno:A2", "keypad:C2", "gray", ["v120", "*", "h0", "v0"]],
+    ["uno:A1", "keypad:C3", "orange", ["v124", "*", "h0", "v0"]],
+    ["uno:A0", "keypad:C4", "pink", ["v128", "*", "h0", "v0"]],
+    ["uno:5", "keypad:R1", "blue", ["v-34", "h96", "*", "v12"]],
+    ["uno:4", "keypad:R2", "green", ["v-30", "h80", "*", "v16"]],
+    ["uno:3", "keypad:R3", "purple", ["v-26", "h64", "*", "v20"]],
+    ["uno:2", "keypad:R4", "gold", ["v-22", "h48", "*", "v24"]],
+    ["lcd1:GND", "uno:GND.1", "black", ["h0"]],
+    ["lcd1:VCC", "uno:5V", "red", ["h0"]],
+    ["lcd1:SDA", "uno:A4.2", "green", ["h0"]],
+    ["lcd1:SCL", "uno:A5.2", "green", ["h0"]],
+    ["led1:C", "uno:9", "green", ["v0"]],
+    ["led1:A", "uno:GND.2", "green", ["v0"]],
+    ["led2:C", "uno:8", "green", ["v0"]],
+    ["led2:A", "uno:GND.3", "green", ["v0"]]
+  ],
+  "dependencies": {}
+}
