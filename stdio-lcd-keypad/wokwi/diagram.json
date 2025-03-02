@@ -52,10 +52,10 @@
     ["lcd1:VCC", "uno:5V", "red", ["h0"]],
     ["lcd1:SDA", "uno:A4.2", "green", ["h0"]],
     ["lcd1:SCL", "uno:A5.2", "green", ["h0"]],
-    ["led1:C", "uno:9", "green", ["v0"]],
-    ["led1:A", "uno:GND.2", "green", ["v0"]],
-    ["led2:C", "uno:8", "green", ["v0"]],
-    ["led2:A", "uno:GND.3", "green", ["v0"]]
+    ["led1:A", "uno:9", "green", ["v0"]],
+    ["led1:C", "uno:GND.2", "green", ["v0"]],
+    ["led2:A", "uno:8", "green", ["v0"]],
+    ["led2:C", "uno:GND.3", "green", ["v0"]]
   ],
   "dependencies": {}
 }
