@@ -4,38 +4,61 @@
   "editor": "wokwi",
   "parts": [
     {
+      "type": "wokwi-breadboard-half",
+      "id": "bb1",
+      "top": -127.8,
+      "left": 319.6,
+      "attrs": {}
+    },
+    {
       "type": "wokwi-arduino-uno",
       "id": "uno",
-      "top": 200,
-      "left": 20,
+      "top": 202.2,
+      "left": 18.6,
       "attrs": {}
     },
     {
       "type": "wokwi-membrane-keypad",
       "id": "keypad",
-      "top": 140,
-      "left": 360,
+      "top": 94,
+      "left": 466.4,
       "attrs": {}
     },
     {
       "type": "wokwi-lcd1602",
       "id": "lcd1",
-      "top": -176,
+      "top": -396.8,
       "left": 341.6,
       "attrs": { "pins": "i2c" }
     },
     {
+      "type": "wokwi-resistor",
+      "id": "r1",
+      "top": -43.2,
+      "left": 421.85,
+      "rotate": 90,
+      "attrs": { "value": "220" }
+    },
+    {
       "type": "wokwi-led",
       "id": "led1",
-      "top": -13.2,
-      "left": 195.8,
+      "top": -42,
+      "left": 426.2,
       "attrs": { "color": "red" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r2",
+      "top": -43.2,
+      "left": 469.85,
+      "rotate": 90,
+      "attrs": { "value": "220" }
     },
     {
       "type": "wokwi-led",
       "id": "led2",
-      "top": -13.2,
-      "left": 243.8,
+      "top": -42,
+      "left": 474.2,
       "attrs": { "color": "green" }
     }
   ],
@@ -52,10 +75,19 @@
     ["lcd1:VCC", "uno:5V", "red", ["h0"]],
     ["lcd1:SDA", "uno:A4.2", "green", ["h0"]],
     ["lcd1:SCL", "uno:A5.2", "green", ["h0"]],
-    ["led1:A", "uno:9", "green", ["v0"]],
-    ["led1:C", "uno:GND.2", "green", ["v0"]],
-    ["led2:A", "uno:8", "green", ["v0"]],
-    ["led2:C", "uno:GND.3", "green", ["v0"]]
+    ["bb1:bn.13", "bb1:16b.h", "green", ["v0"]],
+    ["bb1:11b.h", "bb1:bn.9", "green", ["v0"]],
+    ["uno:9", "bb1:12t.a", "red", ["v-393.6", "h29.6"]],
+    ["bb1:17t.a", "uno:8", "red", ["v-96", "h-307.2"]],
+    ["bb1:bn.1", "uno:GND.3", "blue", ["v-1.3", "h-152"]],
+    ["led2:A", "bb1:17b.g", "", ["$bb"]],
+    ["led2:C", "bb1:16b.g", "", ["$bb"]],
+    ["led1:A", "bb1:12b.g", "", ["$bb"]],
+    ["led1:C", "bb1:11b.g", "", ["$bb"]],
+    ["r2:1", "bb1:17t.b", "", ["$bb"]],
+    ["r2:2", "bb1:17b.f", "", ["$bb"]],
+    ["r1:1", "bb1:12t.b", "", ["$bb"]],
+    ["r1:2", "bb1:12b.f", "", ["$bb"]]
   ],
   "dependencies": {}
 }

@@ -1,14 +1,14 @@
 #ifndef PASSWORD_CONTROLLER_H
 #define PASSWORD_CONTROLLER_H
 
-class PasswordController
+class PasswordService
 {
 private:
     char *passcode;
 
 public:
-    PasswordController();
-    ~PasswordController();
+    PasswordService();
+    ~PasswordService();
     bool setPasscode(const char *newPasscode);
     void deletePasscode();
     bool hasPasscode() const;

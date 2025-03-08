@@ -1,19 +1,19 @@
-#include "PasswordController.h"
+#include <service/password_service/PasswordService.h>
 #include <Arduino.h>
 #include <string.h>
 #include <ctype.h>
 
-PasswordController::PasswordController()
+PasswordService::PasswordService()
     : passcode(nullptr)
 {
 }
 
-PasswordController::~PasswordController()
+PasswordService::~PasswordService()
 {
     deletePasscode();
 }
 
-bool PasswordController::setPasscode(const char *newPasscode)
+bool PasswordService::setPasscode(const char *newPasscode)
 {
     if (newPasscode == NULL)
     {
@@ -49,7 +49,7 @@ bool PasswordController::setPasscode(const char *newPasscode)
     return true;
 }
 
-void PasswordController::deletePasscode()
+void PasswordService::deletePasscode()
 {
     if (passcode != NULL)
     {
@@ -58,12 +58,12 @@ void PasswordController::deletePasscode()
     }
 }
 
-bool PasswordController::hasPasscode() const
+bool PasswordService::hasPasscode() const
 {
     return (passcode != NULL) && (strlen(passcode) == 4);
 }
 
-bool PasswordController::matchPasscode(const char *passcodeToMatch) const
+bool PasswordService::matchPasscode(const char *passcodeToMatch) const
 {
     if (passcode == NULL || passcodeToMatch == NULL)
     {
