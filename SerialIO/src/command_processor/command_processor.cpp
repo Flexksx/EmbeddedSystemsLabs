@@ -6,10 +6,6 @@ CommandProcessor::CommandProcessor(Led *led) : led(led) {}
 
 void CommandProcessor::processCommand(const char *command)
 {
-    for (size_t i = 0; i < strlen(command); i++)
-    {
-        printf("[%c]", command[i]);
-    }
 
     char cleanCommand[32];
     strncpy(cleanCommand, command, sizeof(cleanCommand) - 1);

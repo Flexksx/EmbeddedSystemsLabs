@@ -32,6 +32,9 @@ int KeypadService::keypadRead(FILE *stream)
         if (currentKey != lastKey)
         {
             lastKey = currentKey;
+            Serial.println("Read from keypad: ");
+            Serial.print(currentKey);
+
             return currentKey;
         }
     }

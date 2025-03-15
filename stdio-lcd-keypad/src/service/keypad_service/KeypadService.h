@@ -18,8 +18,10 @@ private:
         {'7', '8', '9', 'C'},
         {'*', '0', '#', 'D'}};
 
-    byte rowPins[ROWS] = {5, 4, 3, 2};
-    byte colPins[COLS] = {A3, A2, A1, A0};
+    byte rowPins[ROWS] =
+        {9, 8, 7, 6};
+    byte colPins[COLS] =
+        {5, 4, 3, 2};
 
     Keypad keypad;
 

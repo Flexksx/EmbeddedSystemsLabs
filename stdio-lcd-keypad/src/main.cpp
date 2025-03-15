@@ -4,8 +4,8 @@
 #include <service/password_service/PasswordService.h>
 #include <driver/led/Led.h>
 
-#define GREEN_LED_PIN 8
-#define RED_LED_PIN 9
+#define GREEN_LED_PIN 10
+#define RED_LED_PIN 11
 
 Led greenLed(GREEN_LED_PIN);
 Led redLed(RED_LED_PIN);
