@@ -57,6 +57,6 @@ void loop()
   taskChangeInterval.runTask(); // Up/Down button => change blinkInterval
   taskIdle.runTask();           // Print system status occasionally
 
-  // Slow down the loop a bit
+  // Slow down the loo a bit
   delay(10);
 }

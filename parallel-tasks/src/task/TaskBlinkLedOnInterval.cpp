@@ -9,7 +9,6 @@ TaskBlinkLedOnInterval::TaskBlinkLedOnInterval(LedDriver &led2Ref,
       led2State(led2St),
       prevTime(0)
 {
-    // Make sure we start with LED2 in the off state
     led2State = false;
 }
 

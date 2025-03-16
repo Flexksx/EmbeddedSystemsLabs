@@ -18,7 +18,6 @@ void ButtonDriver::update()
     pressedEvent = false;
     bool currentState = (digitalRead(pin) == LOW);
 
-    // If we detect a transition from not-pressed -> pressed
     if (!lastState && currentState)
     {
         pressedEvent = true;

@@ -9,7 +9,6 @@ TaskChangeLedBlinkInterval::TaskChangeLedBlinkInterval(ButtonDriver &up,
 
 void TaskChangeLedBlinkInterval::runTask()
 {
-    // Check Up button
     btnUp.update();
     if (btnUp.wasJustPressed())
     {
