@@ -12,6 +12,6 @@ void TaskToggleLedOnButtonPress::runTask()
     {
         led1.toggle();
         Serial.print("LED1 toggled => ");
-        Serial.println(led1.isOn() ? "ON" : "OFF");
+        printf(led1.isOn() ? "ON" : "OFF");
     }
 }

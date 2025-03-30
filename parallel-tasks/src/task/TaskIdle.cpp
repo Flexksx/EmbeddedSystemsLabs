@@ -19,16 +19,16 @@ void TaskIdle::runTask()
     {
         lastReportTime = now;
 
-        Serial.println("=== SYSTEM STATUS ===");
+        printf("=== SYSTEM STATUS ===");
         Serial.print("LED1: ");
-        Serial.println(led1.isOn() ? "ON" : "OFF");
+        printf(led1.isOn() ? "ON" : "OFF");
 
         Serial.print("LED2: ");
-        Serial.println(led2StateRef ? "ON" : "OFF");
+        printf(led2StateRef ? "ON" : "OFF");
 
         Serial.print("Blink Interval: ");
         Serial.print(blinkIntervalRef);
-        Serial.println(" ms");
-        Serial.println("=====================");
+        printf(" ms");
+        printf("=====================");
     }
 }

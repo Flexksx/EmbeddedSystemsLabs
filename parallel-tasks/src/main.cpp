@@ -3,6 +3,7 @@
 // Drivers
 #include "ButtonDriver.h"
 #include "LedDriver.h"
+#include "serial_stdio.h"
 
 // Task classes
 #include "TaskToggleLedOnButtonPress.h"
@@ -36,17 +37,13 @@ TaskIdle taskIdle(led1, led2, g_blinkInterval, g_led2State);
 void setup()
 {
   Serial.begin(9600);
-
+  init_stdio();
   // Initialize drivers
   buttonToggle.begin();
   buttonUp.begin();
   buttonDown.begin();
   led1.begin();
   led2.begin();
-
-  Serial.println("System startup with separate tasks in separate files...");
-  Serial.println("Press button on pin 11 to toggle LED1.");
-  Serial.println("Use buttons on pins 10 (UP) & 9 (DOWN) to change blink interval.");
 }
 
 void loop()

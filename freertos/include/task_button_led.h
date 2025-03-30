@@ -3,7 +3,6 @@
 
 #include <Arduino_FreeRTOS.h>
 
-// Task function prototype
 void ButtonLedTask(void *pvParameters);
 
 #endif

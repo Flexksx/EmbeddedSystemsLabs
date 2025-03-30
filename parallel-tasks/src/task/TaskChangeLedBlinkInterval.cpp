@@ -15,7 +15,7 @@ void TaskChangeLedBlinkInterval::runTask()
         blinkIntervalRef += 200;
         Serial.print("Blink interval increased => ");
         Serial.print(blinkIntervalRef);
-        Serial.println(" ms");
+        printf(" ms");
     }
 
     // Check Down button
@@ -28,6 +28,6 @@ void TaskChangeLedBlinkInterval::runTask()
         }
         Serial.print("Blink interval decreased => ");
         Serial.print(blinkIntervalRef);
-        Serial.println(" ms");
+        printf(" ms");
     }
 }
