@@ -1,49 +1,40 @@
 #include <Arduino.h>
 #include <Arduino_FreeRTOS.h>
+#include <task.h>
 #include <semphr.h>
-#include "task_read_joystick.h"
-#include "joystick_state.h"
-#include "task_display_state.h"
+
+#include "read_joystick_task.h"
+#include "display_task.h"
+
+#include "joystick_driver.h"
+
+JoystickState_t gJoystick;
+SemaphoreHandle_t xJoystickMutex = NULL;
 
 void setup()
 {
-  Serial.begin(9600);
-  while (!Serial)
-    ;
-  Serial.println("Setup");
+  // Setup pins
+  pinMode(A0, INPUT);
+  pinMode(A1, INPUT);
 
-  if (!initializeJoystickState())
+  xJoystickMutex = xSemaphoreCreateMutex();
+  if (xJoystickMutex == NULL)
   {
-    Serial.println("Error initializing joystick state");
-  }
-  else
-  {
-    Serial.println("Joystick state initialized");
+    while (1)
+    {
+    }
   }
 
-  BaseType_t rc = xTaskCreate(taskReadJoystick, "ReadJoystickState", 128, NULL, 1, NULL);
-  if (rc == pdPASS)
-  {
-    Serial.println("Task created OK");
-    vTaskStartScheduler();
-  }
-  else
-  {
-    Serial.println("Task create FAIL");
-  }
+  xTaskCreate(vJoystickTask, "JoyTask", 128, NULL, 2, NULL);
+  xTaskCreate(vDisplayTask, "DispTask", 128, NULL, 1, NULL);
 
-  BaseType_t rc2 = xTaskCreate(taskUpdateDisplay, "UpdateDisplay", 128, NULL, 1, NULL);
-  if (rc2 == pdPASS)
-  {
-    Serial.println("Task created OK");
-    vTaskStartScheduler();
-  }
-  else
-  {
-    Serial.println("Task create FAIL");
-  }
-
-  Serial.println("Scheduler didn't start");
+  vTaskStartScheduler();
 }
 
-void loop() {}
+void loop()
+{
+  // Unused under FreeRTOS
+  for (;;)
+  {
+  }
+}

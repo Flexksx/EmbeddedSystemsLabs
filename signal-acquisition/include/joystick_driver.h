@@ -1,10 +1,16 @@
-#ifndef JOYSTICK_DRIVER_H
-#define JOYSTICK_DRIVER_H
+#ifndef JOYSTICK_H
+#define JOYSTICK_H
 
-#include <Arduino.h>
-#include <Arduino_FreeRTOS.h>
+// Data structure for the joystick
+typedef struct
+{
+    int x;
+    int y;
+} JoystickState_t;
 
-int getX(int JOY_H_PIN);
-int getY(int JOY_V_PIN);
+// Functions to read the joystick and classify its position
+JoystickState_t readJoystickDriver();
+const char *classifyX(int xVal);
+const char *classifyY(int yVal);
 
-#endif // JOYSTICK_DRIVER_H
+#endif // JOYSTICK_H
