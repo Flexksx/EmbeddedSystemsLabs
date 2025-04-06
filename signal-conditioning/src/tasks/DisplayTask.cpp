@@ -1,5 +1,7 @@
 #include "DisplayTask.h"
 #include "lcd_stdio.h"
+#include "Arduino_FreeRTOS.h"
+#include "Arduino.h"
 #include <stdio.h>
 
 extern float gFilteredLux;
@@ -8,6 +10,7 @@ extern SemaphoreHandle_t xSensorDataMutex;
 void vDisplayTask(void *pvParameters)
 {
     setupStdioLcd();
+    lcdClear();
 
     const TickType_t xDelay = pdMS_TO_TICKS(1000);
     TickType_t xLastWakeTime = xTaskGetTickCount();
@@ -24,7 +27,9 @@ void vDisplayTask(void *pvParameters)
 
         lcdClear();
 
-        printf("Lux: %.2f\n", luxVal);
+        printf("Lux: %.2f\n", (double)luxVal);
+        Serial.println("Lux:");
+        Serial.println(luxVal);
 
         vTaskDelayUntil(&xLastWakeTime, xDelay);
     }

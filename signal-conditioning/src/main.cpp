@@ -9,7 +9,6 @@ PhotoResistor photo(A0, 5.0f, 1023.0f, 0.0f, 5.0f, 0.0f, 1000.0f);
 SaltPepperFilter spFilter(5);
 MovingAverageFilter maFilter(5);
 
-// Now that SensorTaskParams_t is in SensorTask.h, we can use it here
 static SensorTaskParams_t sensorParams = {
     &photo,
     &spFilter,
@@ -34,10 +33,10 @@ void setup()
       NULL);
 
   xTaskCreate(
-      vDisplayTask, // If you have a display task
+      vDisplayTask,
       "Display",
       256,
-      NULL, // if display needs no parameters
+      NULL,
       1,
       NULL);
 
