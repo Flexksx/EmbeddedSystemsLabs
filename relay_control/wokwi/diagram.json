@@ -1,0 +1,37 @@
+{
+  "version": 1,
+  "author": "Anonymous maker",
+  "editor": "wokwi",
+  "parts": [
+    {
+      "type": "wokwi-arduino-uno",
+      "id": "uno",
+      "top": 0,
+      "left": 0,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-led",
+      "id": "led1",
+      "top": -109.2,
+      "left": 464.6,
+      "attrs": { "color": "red" }
+    },
+    {
+      "type": "wokwi-relay-module",
+      "id": "relay1",
+      "top": -220.6,
+      "left": 336,
+      "attrs": {}
+    }
+  ],
+  "connections": [
+    ["uno:5V", "relay1:VCC", "red", ["v0"]],
+    ["relay1:GND", "uno:GND.2", "black", ["h0"]],
+    ["relay1:COM", "uno:3.3V", "green", ["h97.2", "v401.8", "h-397.2"]],
+    ["relay1:IN", "uno:2", "green", ["h0"]],
+    ["led1:C", "uno:GND.1", "green", ["v9.6", "h-364.1"]],
+    ["relay1:NO", "led1:A", "green", ["h68.4", "v113.4"]]
+  ],
+  "dependencies": {}
+}
