@@ -1,4 +1,3 @@
-// Sketch.ino
 
 #include <Arduino.h>
 #include "SerialIo.h"
