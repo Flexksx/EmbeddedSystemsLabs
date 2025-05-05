@@ -16,7 +16,6 @@ void vSensorTask(void *pvParameters)
     SaltPepperFilter *spFilter = params->pSpFilter;
     MovingAverageFilter *maFilter = params->pMaFilter;
 
-    // Create the mutex if it doesn't exist yet
     if (xSensorDataMutex == NULL)
     {
         xSensorDataMutex = xSemaphoreCreateMutex();

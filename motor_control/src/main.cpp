@@ -1,41 +1,32 @@
+// main.c - Main program for DC motor controller
 #include <Arduino.h>
 #include <Arduino_FreeRTOS.h>
 #include <semphr.h>
 #include <queue.h>
 #include "SerialIo.h"
 #include "Motor.h"
-
-// Semaphore for safe access to the motor controller
 SemaphoreHandle_t motor_mutex;
-
 #define MOTOR_IN1 5
 #define MOTOR_IN2 6
-
 Motor motor(MOTOR_IN1, MOTOR_IN2);
-
 static const int MAX_CMD_LENGTH = 64;
-
 void getInput()
 {
     char cmd[MAX_CMD_LENGTH] = {0};
     char param[MAX_CMD_LENGTH] = {0};
     int value = 0;
-
     // Read command using IO class
     char *inputStr = SerialIo::input();
-
     if (inputStr == NULL || strlen(inputStr) == 0)
     {
         return;
     }
-
     // Parse the command string
     if (sscanf(inputStr, "%s %s %d", cmd, param, &value) < 1)
     {
         printf("Invalid command format\n");
         return;
     }
-
     // Check if it's a motor command
     if (strcmp(cmd, "motor") == 0)
     {
@@ -75,8 +66,6 @@ void getInput()
         printf("Unknown command: %s\n", cmd);
     }
 }
-
-// Task to handle commands
 void CommandHandlerTask(void *pvParameters)
 {
     for (;;)
@@ -86,11 +75,9 @@ void CommandHandlerTask(void *pvParameters)
             getInput();
             xSemaphoreGive(motor_mutex);
         }
-
-        vTaskDelay(50 / portTICK_PERIOD_MS); // 50ms delay
+        vTaskDelay(50 / portTICK_PERIOD_MS);
     }
 }
-
 void StatusReportTask(void *pvParameters)
 {
     for (;;)
@@ -102,28 +89,14 @@ void StatusReportTask(void *pvParameters)
                    motor.getPower());
             xSemaphoreGive(motor_mutex);
         }
-
-        vTaskDelay(2000 / portTICK_PERIOD_MS); // Report every 2 seconds
+        vTaskDelay(2000 / portTICK_PERIOD_MS);
     }
 }
-
 void setup()
 {
-    Serial.begin(9600);
-    while (!Serial)
-    {
-    }
-
-    // Initialize stdio redirection
     SerialIo::init();
-
-    // Initialize motor controller
     motor.init();
-
-    // Create a mutex for motor access
     motor_mutex = xSemaphoreCreateMutex();
-
-    // Create FreeRTOS tasks
     xTaskCreate(
         CommandHandlerTask, // Task function
         "CommandHandler",   // Task name
@@ -132,7 +105,6 @@ void setup()
         2,                  // Priority
         NULL                // Task handle
     );
-
     xTaskCreate(
         StatusReportTask, // Task function
         "StatusReport",   // Task name
@@ -141,11 +113,9 @@ void setup()
         1,                // Priority (lower than command handler)
         NULL              // Task handle
     );
-
     // Start the scheduler
     vTaskStartScheduler();
 }
-
 void loop()
 {
     // Empty, everything is handled by FreeRTOS tasks
